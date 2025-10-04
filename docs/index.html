@@ -1,324 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pierrot Nym Node | Mixnet Operator</title>
-    <meta name="description" content="Professional Nym mixnode operator committed to privacy, decentralization and network security. Staking welcome.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
-            color: #FFFFFF;
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,0,128,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-        }
-        
-        .logo {
-            width: 80px;
-            height: 80px;  
-            margin: 0 auto 2rem;
-            background: linear-gradient(45deg, #FF0080, #FF4081);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            box-shadow: 0 8px 32px rgba(255, 0, 128, 0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #FFFFFF, #FF0080);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-        
-        .performance-badge {
-            display: inline-block;
-            background: rgba(0, 255, 0, 0.1);
-            color: #00FF88;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin: 0.5rem 0;
-            border: 1px solid rgba(0, 255, 0, 0.3);
-        }
-        
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-        
-        .card {
-            background: rgba(26, 26, 26, 0.8);
-            border: 1px solid rgba(255, 0, 128, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: left;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .card:hover {
-            border-color: #FF0080;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.2);
-        }
-        
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, #FF0080, #FF4081);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        .card h3 {
-            color: #FF0080;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 4rem 0;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #FF0080;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.8;
-            font-weight: 500;
-        }
-        
-        .node-info, .contact {
-            background: rgba(26, 26, 26, 0.8);
-            border: 1px solid rgba(255, 0, 128, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 3rem 0;
-            backdrop-filter: blur(10px);
-        }
-        
-        .contact { text-align: center; }
-        
-        .node-info h3, .contact h3 {
-            color: #FF0080;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        
-        .node-id {
-            font-family: 'Monaco', 'Consolas', monospace;
-            background: rgba(255, 0, 128, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            word-break: break-all;
-            border: 1px solid rgba(255, 0, 128, 0.2);
-            margin-top: 1rem;
-        }
-        
-        .email-link {
-            color: #FF0080;
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid transparent;
-            transition: border-bottom 0.3s ease;
-        }
-        
-        .email-link:hover { border-bottom: 1px solid #FF0080; }
-        
-        .cta {
-            text-align: center;
-            margin: 4rem 0;
-        }
-        
-        .cta h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #FFFFFF;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #FF0080, #FF4081);
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin: 0 0.5rem 1rem;
-            font-size: 1rem;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 0, 128, 0.4);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid #FF0080;
-        }
-        
-        .btn-secondary:hover { background: rgba(255, 0, 128, 0.1); }
-        
-        .footer {
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(255, 0, 128, 0.2);
-            margin-top: 4rem;
-            opacity: 0.7;
-        }
-        
-        @media (max-width: 768px) {
-            .container { padding: 1rem; }
-            .hero { padding: 2rem 0; }
-            .stats { flex-direction: column; gap: 2rem; }
-            .cards { grid-template-columns: 1fr; }
-            .btn { display: block; margin: 0.5rem 0; text-align: center; }
-        }
-        
-        html { scroll-behavior: smooth; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pierrot Nym Node Mixnet Operator</title>
+  <meta name="description" content="Professional Nym mixnode operator committed to privacy, decentralization and network security. Staking welcome." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
+      color: #FFFFFF;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #28a745; /* Vert doux */
+    }
+
+    a {
+      color: #28a745;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom 0.3s ease;
+    }
+
+    a:hover {
+      border-bottom: 1px solid #28a745;
+    }
+
+    .node-info {
+      background: rgba(26, 26, 26, 0.85);
+      border: 1px solid rgba(40, 167, 69, 0.3);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 3rem 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .node {
+      margin-bottom: 2rem;
+    }
+
+    .node-id {
+      font-family: Monaco, Consolas, monospace;
+      background: rgba(40, 167, 69, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      word-break: break-all;
+      border: 1px solid rgba(40, 167, 69, 0.2);
+      margin-top: 1rem;
+      color: #28a745;
+    }
+
+    .staking-call {
+      background: rgba(40, 167, 69, 0.15);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      border: 1px solid rgba(40, 167, 69, 0.4);
+      color: white;
+    }
+
+    .staking-call p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(45deg, #28a745, #218838);
+      color: white;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.6);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(40, 167, 69, 0.8);
+    }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <header class="hero">
-            <div class="logo">P</div>
-            <h1>Pierrot Nym Node</h1>
-            <p class="subtitle">Mixnet Operator • Privacy • Decentralization</p>
-            <span class="performance-badge">🟢 Optimized & Running</span>
-        </header>
+  <div class="container">
+    <header class="hero">
+      <div class="logo" style="background: linear-gradient(45deg, #28a745, #218838); color: white; border-radius: 50%; width: 80px; height: 80px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">P</div>
+      <h1>Pierrot Nym Node</h1>
+      <p class="subtitle" style="opacity: 0.8; font-size: 1.2rem;">Mixnet Operator - Privacy & Decentralization</p>
+      <span class="performance-badge" style="display: inline-block; background: rgba(40, 167, 69, 0.1); color: #28a745; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin: 0.5rem 0; border: 1px solid rgba(40, 167, 69, 0.3);">Optimized & Running</span>
+    </header>
 
-        <div class="cards">
-            <div class="card">
-                <div class="card-icon">🛡️</div>
-                <h3>Commitment</h3>
-                <p>I am committed to maintaining this node with high performance standards and maximum uptime to support the Nym ecosystem and advance internet privacy.</p>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon">🎯</div>
-                <h3>Mission</h3>
-                <p>Supporting the decentralization of VPN services and metadata protection for a more private and free internet. Every packet matters for global privacy.</p>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <h3>Technology</h3>
-                <p>Optimized mixnode with 24/7 monitoring, efficient Bloom filters, and high-performance infrastructure. Recently optimized for peak performance.</p>
-            </div>
-        </div>
+    <div class="node-info">
+      <h3>Node Information</h3>
+      <p>Professional mixnode operator with optimized infrastructure</p>
+      
+      <div class="node">
+        <h4>Mixnode Pierrot</h4>
+        <p>Our optimized mixnode helps route traffic securely and anonymously across the Nym network.</p>
+        <a href="https://explorer.nym.spectredao.net/nodes/J6VGgDiu7HuLuhR23xTcbcmcEK8fwMmjyWgKd6fUgADD" target="_blank" rel="noopener" title="Explore Mixnode Details & Start Staking">Explore Mixnode & Stake your NYM</a>
+        <div class="node-id"><strong>Node ID:</strong><br>J6VGgDiu7HuLuhR23xTcbcmEK8fwMmjyWgKd6fUgADD</div>
+      </div>
+      
+      <div class="node">
+        <h4>Gateway Canada (Toronto)</h4>
+        <p>This gateway ensures reliable entry and exit points for traffic in the Nym mixnet.</p>
+        <a href="https://explorer.nym.spectredao.net/nodes/9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q" target="_blank" rel="noopener" title="Explore Gateway Details & Start Staking">Explore Gateway & Stake your NYM</a>
+        <div class="node-id"><strong>Node ID:</strong><br>9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q</div>
+      </div>
 
-        <div class="stats">
-            <div class="stat">
-                <span class="stat-number">95%+</span>
-                <span class="stat-label">Target Uptime</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">&lt;100ms</span>
-                <span class="stat-label">Latency</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">Monitoring</span>
-            </div>
-        </div>
+     <div class="staking-call">
+ 	 <h3>Support Network Privacy by Staking with Us</h3>
+ 	 <p>Delegate your NYM tokens to these nodes to help secure the Nym network. Earn rewards while strengthening global privacy and decentralization.</p>
+ 	 <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+ 	   <a href="https://explorer.nym.spectredao.net/nodes/J6VGgDiu7HuLuhR23xTcbcmcEK8fwMmjyWgKd6fUgADD" target="_blank" rel="noopener" class="btn" title="Stake NYM on Mixnode Pierrot">Stake on Mixnode Pierrot</a>
+ 	   <a href="https://explorer.nym.spectredao.net/nodes/9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q" target="_blank" rel="noopener" class="btn" title="Stake NYM on Gateway Canada">Stake on Gateway Canada</a>
+ 	 </div>
+	</div>
 
-        <div class="node-info">
-            <h3>Node Information</h3>
-            <p>Professional mixnode operator with optimized infrastructure:</p>
-            <div class="node-id">
-                <strong>Node ID:</strong><br>
-                J6VGgDiu7HuLuhR23xTcbcmEK8fwMmjyWgKd6fUgADD
-            </div>
-        </div>
 
-        <div class="contact">
-            <h3>Contact</h3>
-            <p>For questions about staking or node performance:</p>
-            <p style="margin-top: 1rem;">
-                <a href="mailto:chayotte@proton.me" class="email-link">📧 chayotte@proton.me</a>
-            </p>
-        </div>
-
-        <div class="cta">
-            <h3>Staking Welcome</h3>
-            <p>Delegate your NYM tokens and participate in securing the network while earning rewards</p>
-            <a href="https://explorer.nymtech.net/" class="btn" target="_blank" rel="noopener">Nym Explorer</a>
-            <a href="https://nym.com/" class="btn btn-secondary" target="_blank" rel="noopener">Learn About Nym</a>
-        </div>
-
-        <footer class="footer">
-            <p>Supporting privacy infrastructure • Powered by Nym Network</p>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Last optimized: September 2025</p>
-        </footer>
-    </div>
+    <footer class="footer" style="text-align: center; padding: 2rem 0; border-top: 1px solid rgba(40, 167, 69, 0.3); opacity: 0.7; margin-top: 4rem; font-size: 0.9rem;">
+      <p>Supporting privacy infrastructure — Powered by Nym Network</p>
+      <p>Last optimized October 2025</p>
+    </footer>
+  </div>
 </body>
 </html>
