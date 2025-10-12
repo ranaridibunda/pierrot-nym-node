@@ -1,81 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pierrot Gateway Operator</title>
-  <meta name="description" content="Pierrot Gateway Nym Operator – Privacy, decentralization and reliable network access. Staking guide and resources for participants." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎭</text></svg>" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%); color: #FFF; min-height: 100vh; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-    h1, h2, h3, h4 { font-weight: 700; color: #28a745; margin-bottom: 1rem; }
-    a { color: #28a745; text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: border-bottom 0.3s; }
-    a:hover { border-bottom: 1px solid #28a745; }
-    .node-info { background: rgba(26,26,26,0.85); border: 1px solid rgba(40,167,69,0.3); border-radius: 16px; padding: 2rem; margin: 3rem 0; }
-    .node { margin-bottom: 2rem; }
-    .node-id { font-family: Monaco, Consolas, monospace; background: rgba(40,167,69,0.1); padding: 1rem; border-radius: 8px; font-size: 0.9rem; word-break: break-all; border: 1px solid rgba(40,167,69,0.2); margin-top: 1rem; color: #28a745; }
-    .staking-call { background: rgba(40,167,69,0.15); border-radius: 16px; padding: 2rem; text-align: center; margin-top: 3rem; border: 1px solid rgba(40,167,69,0.4); color: white; }
-    .staking-call p { margin-bottom: 1.5rem; font-size: 1.1rem; }
-    .btn { display: inline-block; background: linear-gradient(45deg,#28a745,#218838); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 50px; font-weight: 700; transition: all 0.3s; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(40,167,69,0.6); }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(40,167,69,0.8); }
-    .resources { background: rgba(40,167,69,0.10); padding: 2rem; border-radius: 14px; margin-top: 3rem; border: 1px solid rgba(40,167,69,0.30); }
-    .resources ul { list-style-type: disc; padding-left: 1.5rem; }
-    .resources li { margin-bottom: 0.6rem; }
-    .update-badge { background: rgba(40,167,69,0.2); color: #28a745; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(40,167,69,0.4); margin-bottom: 1rem; display: inline-block; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierrot Gateways | Nym Network</title>
+    
+    <!-- Mask Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎭</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        
+        .gateway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .gateway-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: transform 0.3s ease;
+        }
+        
+        .gateway-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+        }
+        
+        .gateway-title {
+            font-size: 1.6em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .flag {
+            font-size: 1.2em;
+        }
+        
+        .gateway-info {
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+        
+        .node-id {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8em;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 6px 0;
+            font-size: 0.9em;
+        }
+        
+        .feature-icon {
+            font-size: 1.1em;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 8px 4px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.6);
+        }
+        
+        .stake-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .stake-section h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .stake-section p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .stake-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .resources {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            margin-bottom: 40px;
+        }
+        
+        .resources h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .resources ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .resources li {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .resources li:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+        
+        .resources a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .resources a:hover {
+            text-decoration: underline;
+        }
+        
+        .resources a::before {
+            content: "🔗";
+            font-size: 1.2em;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+        
+        footer p {
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .gateway-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resources ul {
+                grid-template-columns: 1fr;
+            }
+            
+            .stake-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <header class="hero">
-    <div class="logo" style="background: linear-gradient(45deg,#28a745,#218838); color: white; border-radius: 50%; width: 80px; height: 80px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">P</div>
-    <h1>Pierrot Gateway Nodes</h1>
-    <div class="update-badge">🎭 Updated October 2025</div>
-    <p style="opacity: 0.8; font-size: 1.1rem;">Nym Gateway Operator – Privacy & High Availability</p>
-  </header>
-
-  <div class="node-info">
-    <h3>Currently Active Nodes</h3>
-    <div class="node">
-      <h4>Pierrot Gateway | United Kingdom (International)</h4>
-      <p>This gateway node distributes traffic for European and international users. Entry/exit points for the Nym network: authentication, forwarding and privacy.</p>
-      <a href="https://explorer.nym.spectredao.net/nodes/8MScQyENaj6W75TdL2hQmkvfpeXXyUfKfzaV8VTSzNPa" target="_blank" rel="noopener">Explore on SpectreDAO</a> <br/>
-      <a href="https://nym.com/explorer/nym-node/2664" target="_blank" rel="noopener">Alternative Explorer (ID: 2664)</a>
-      <div class="node-id"><strong>Node ID:</strong><br>8MScQyENaj6W75TdL2hQmkvfpeXXyUfKfzaV8VTSzNPa or 2664</div>
+    <div class="container">
+        <header>
+            <h1>🎭 Pierrot Gateways</h1>
+            <p style="font-size: 1.2em; margin: 10px 0;">Secure, Private, Anonymous Access to the Nym Network</p>
+            <span class="badge">🎭 Updated October 2025</span>
+        </header>
+        
+        <h2 style="text-align: center; margin-bottom: 30px; font-size: 2em;">Currently Active Nodes</h2>
+        
+        <div class="gateway-grid">
+            <!-- Gateway United Kingdom -->
+            <div class="gateway-card">
+                <div class="gateway-title">
+                    <span class="flag">🇬🇧</span>
+                    <span>United Kingdom</span>
+                </div>
+                
+                <div class="gateway-info">
+                    <div class="feature">
+                        <span class="feature-icon">🔒</span>
+                        <span>Entry & Exit Gateway</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🌐</span>
+                        <span>European & International Traffic</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🛡️</span>
+                        <span>Authentication & Privacy</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">⚡</span>
+                        <span>High Performance</span>
+                    </div>
+                </div>
+                
+                <div class="node-id">
+                    <strong>Node ID:</strong><br>
+                    8MScQyENaj6W75TdL2hQmkvfpeXXyUfKfzaV8VTSzNPa
+                    <br><small>(ID: 2664)</small>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="https://explorer.nym.spectredao.net/nodes/8MScQyENaj6W75TdL2hQmkvfpeXXyUfKfzaV8VTSzNPa" class="btn" target="_blank">🔍 SpectreDAO</a>
+                    <a href="https://nym.com/explorer/nym-node/2664" class="btn" target="_blank">🔍 Nym Explorer</a>
+                </div>
+            </div>
+            
+            <!-- Gateway Canada -->
+            <div class="gateway-card">
+                <div class="gateway-title">
+                    <span class="flag">🇨🇦</span>
+                    <span>Canada</span>
+                </div>
+                
+                <div class="gateway-info">
+                    <div class="feature">
+                        <span class="feature-icon">🔒</span>
+                        <span>Entry & Exit Gateway</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🌐</span>
+                        <span>Canada & International Access</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✅</span>
+                        <span>Real-time Traffic Verification</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🚀</span>
+                        <span>Reliable Uptime</span>
+                    </div>
+                </div>
+                
+                <div class="node-id">
+                    <strong>Node ID:</strong><br>
+                    9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q
+                    <br><small>(ID: 2660)</small>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="https://explorer.nym.spectredao.net/nodes/9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q" class="btn" target="_blank">🔍 SpectreDAO</a>
+                    <a href="https://nym.com/explorer/nym-node/2660" class="btn" target="_blank">🔍 Nym Explorer</a>
+                </div>
+            </div>
+            
+            <!-- Gateway Romania -->
+            <div class="gateway-card">
+                <div class="gateway-title">
+                    <span class="flag">🇷🇴</span>
+                    <span>Romania</span>
+                </div>
+                
+                <div class="gateway-info">
+                    <div class="feature">
+                        <span class="feature-icon">🔒</span>
+                        <span>Entry & Exit Gateway</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🌐</span>
+                        <span>IPv4 + IPv6 Support</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">⚡</span>
+                        <span>QUIC Bridge (Latest Tech)</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🛡️</span>
+                        <span>WireGuard VPN Enabled</span>
+                    </div>
+                </div>
+                
+                <div class="node-id">
+                    <strong>Node ID:</strong><br>
+                    DXiKYrsx4bnGimcxC3VKpZM8VpayRnE9fsKJZAhgWEYp
+                    <br><small>(ID: 2682)</small>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="https://explorer.nym.spectredao.net/nodes/2682" class="btn" target="_blank">🔍 SpectreDAO</a>
+                    <a href="https://nym.com/explorer/nym-node/2682" class="btn" target="_blank">🔍 Nym Explorer</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Stake Section -->
+        <div class="stake-section">
+            <h2>💰 Stake on Our Nodes</h2>
+            <p>Help secure the Nym network by delegating your NYM tokens to our gateways. Support an anonymous and decentralized internet!</p>
+            <div class="stake-buttons">
+                <a href="https://nym.com/explorer/nym-node/2664" class="btn" target="_blank">🇬🇧 Stake on UK Gateway</a>
+                <a href="https://nym.com/explorer/nym-node/2660" class="btn" target="_blank">🇨🇦 Stake on Canada Gateway</a>
+                <a href="https://nym.com/explorer/nym-node/2682" class="btn" target="_blank">🇷🇴 Stake on Romania Gateway</a>
+            </div>
+        </div>
+        
+        <!-- Resources Section -->
+        <div class="resources">
+            <h2>🔗 Useful Nym Resources</h2>
+            <ul>
+                <li><a href="https://nym.com" target="_blank" rel="noopener">Official Nym Website</a></li>
+                <li><a href="https://nymtech.net/docs/" target="_blank" rel="noopener">Technical Documentation</a></li>
+                <li><a href="https://forum.nymtech.net/" target="_blank" rel="noopener">Nym Community Forum</a></li>
+                <li><a href="https://nym.com/blog/" target="_blank" rel="noopener">Blog & News</a></li>
+                <li><a href="https://github.com/nymtech/nym" target="_blank" rel="noopener">Github Source Code</a></li>
+                <li><a href="https://explorer.nym.spectredao.net/" target="_blank" rel="noopener">Nym Network Explorer</a></li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p><strong>Private & Decentralized Infrastructure — Powered by Nym Network</strong></p>
+            <p>🎭 Operated with ❤️ for Privacy | Last updated: October 2025</p>
+        </footer>
     </div>
-    <div class="node">
-      <h4>Pierrot Gateway | Canada</h4>
-      <p>This gateway node ensures reliable access for Canada and international users. Distribution, entry/exit and real-time Nym traffic verification.</p>
-      <a href="https://explorer.nym.spectredao.net/nodes/9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q" target="_blank" rel="noopener">Explore on SpectreDAO</a> <br/>
-      <a href="https://nym.com/explorer/nym-node/2660" target="_blank" rel="noopener">Alternative Explorer (ID: 2660)</a>
-      <div class="node-id"><strong>Node ID:</strong><br>9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q or 2660</div>
-    </div>
-  </div>
-
-  <div class="staking-call">
-    <h3>Stake on Our Nodes</h3>
-    <p>Help secure the Nym network by delegating your NYM tokens to our gateways. Support an anonymous and decentralized internet!</p>
-    <a href="https://nym.com/explorer/nym-node/2664" target="_blank" class="btn">Stake on UK Gateway</a>
-    <a href="https://nym.com/explorer/nym-node/2660" target="_blank" class="btn">Stake on Canada Gateway</a>
-  </div>
-
-  <div class="resources">
-    <h3>Useful Nym Resources</h3>
-    <ul>
-      <li><a href="https://nym.com" target="_blank" rel="noopener">Official Nym Website</a></li>
-      <li><a href="https://nymtech.net/docs/" target="_blank" rel="noopener">Technical Documentation</a></li>
-      <li><a href="https://forum.nymtech.net/" target="_blank" rel="noopener">Nym Community Forum</a></li>
-      <li><a href="https://nym.com/blog/" target="_blank" rel="noopener">Blog & News</a></li>
-      <li><a href="https://github.com/nymtech/nym" target="_blank" rel="noopener">Github Source Code</a></li>
-      <li><a href="https://explorer.nym.spectredao.net/" target="_blank" rel="noopener">Nym Network Explorer</a></li>
-    </ul>
-  </div>
-
-  <footer class="footer" style="text-align: center; padding: 2rem 0; border-top: 1px solid rgba(40,167,69,0.3); opacity: 0.7; margin-top: 4rem; font-size: 0.95rem;">
-    <p>Private & Decentralized Infrastructure — Powered by Nym Network</p>
-    <p>Last updated: October 2025</p>
-  </footer>
-</div>
 </body>
 </html>
+
