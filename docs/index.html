@@ -77,6 +77,23 @@
             }
         }
         
+        /* Animation clignotement doux pour l'éclair */
+        @keyframes pulseGlow {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
+            }
+            50% {
+                opacity: 0.6;
+                text-shadow: 0 0 2px #ffd700;
+            }
+        }
+        
+        .upgrade-banner .flash-icon {
+            display: inline-block;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -313,7 +330,7 @@
     <!-- Bannière temporaire upgrade -->
     <div class="upgrade-banner" id="upgradeBanner">
         <div class="upgrade-banner-content">
-            ⚡ <strong>Infrastructure Update:</strong> All Nym nodes upgraded to v1.19.0 + QUIC Bridge enabled. 
+            <span class="flash-icon">⚡</span> <strong>Infrastructure Update:</strong> All Nym nodes upgraded to v1.19.0 + QUIC Bridge enabled. 
             Stabilization in progress (24-48h). All services remain fully operational ✅
         </div>
         <button class="upgrade-banner-close" onclick="closeBanner()" title="Close">✕</button>
