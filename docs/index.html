@@ -20,12 +20,67 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
+        }
+        
+        /* Bannière upgrade */
+        .upgrade-banner {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
+            animation: slideInDown 0.6s ease-out;
+            position: relative;
+        }
+        
+        .upgrade-banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .upgrade-banner strong {
+            color: #ffd700;
+        }
+        
+        .upgrade-banner-close {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 18px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+            line-height: 1;
+        }
+        
+        .upgrade-banner-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+        
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 20px;
         }
         
         header {
@@ -242,10 +297,28 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .upgrade-banner {
+                padding: 12px 50px 12px 15px;
+                font-size: 13px;
+            }
+            
+            .upgrade-banner-close {
+                right: 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Bannière temporaire upgrade -->
+    <div class="upgrade-banner" id="upgradeBanner">
+        <div class="upgrade-banner-content">
+            ⚡ <strong>Infrastructure Update:</strong> All Nym nodes upgraded to v1.19.0 + QUIC Bridge enabled. 
+            Stabilization in progress (24-48h). All services remain fully operational ✅
+        </div>
+        <button class="upgrade-banner-close" onclick="closeBanner()" title="Close">✕</button>
+    </div>
+
     <div class="container">
         <header>
             <h1>🎭 Pierrot Gateways</h1>
@@ -270,15 +343,15 @@
                     </div>
                     <div class="feature">
                         <span class="feature-icon">🌐</span>
-                        <span>European & International Traffic</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">🛡️</span>
-                        <span>Authentication & Privacy</span>
+                        <span>IPv4 + IPv6 Support</span>
                     </div>
                     <div class="feature">
                         <span class="feature-icon">⚡</span>
-                        <span>High Performance</span>
+                        <span>QUIC Bridge (Latest Tech)</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🛡️</span>
+                        <span>WireGuard VPN Enabled</span>
                     </div>
                 </div>
                 
@@ -308,15 +381,15 @@
                     </div>
                     <div class="feature">
                         <span class="feature-icon">🌐</span>
-                        <span>Canada & International Access</span>
+                        <span>IPv4 + IPv6 Support</span>
                     </div>
                     <div class="feature">
-                        <span class="feature-icon">✅</span>
-                        <span>Real-time Traffic Verification</span>
+                        <span class="feature-icon">⚡</span>
+                        <span>QUIC Bridge (Latest Tech)</span>
                     </div>
                     <div class="feature">
-                        <span class="feature-icon">🚀</span>
-                        <span>Reliable Uptime</span>
+                        <span class="feature-icon">🛡️</span>
+                        <span>WireGuard VPN Enabled</span>
                     </div>
                 </div>
                 
@@ -400,6 +473,21 @@
             <p>🎭 Operated with ❤️ for Privacy | Last updated: October 2025</p>
         </footer>
     </div>
+
+    <script>
+        // Gestion de la bannière upgrade
+        function closeBanner() {
+            document.getElementById('upgradeBanner').style.display = 'none';
+            localStorage.setItem('upgradeBannerClosed', 'true');
+        }
+
+        // Vérifier au chargement si la bannière a déjà été fermée
+        window.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('upgradeBannerClosed') === 'true') {
+                document.getElementById('upgradeBanner').style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
 
