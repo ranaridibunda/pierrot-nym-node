@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pierrot Gateways | Nym Network</title>
-    
+    <title>Pierrot Gateways - Nym Network</title>
     <!-- Mask Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎭</text></svg>">
-    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -22,7 +20,7 @@
             min-height: 100vh;
             padding: 0;
         }
-        
+
         /* Bannière upgrade */
         .upgrade-banner {
             background: rgba(0, 0, 0, 0.25);
@@ -35,16 +33,16 @@
             animation: slideInDown 0.6s ease-out;
             position: relative;
         }
-        
+
         .upgrade-banner-content {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .upgrade-banner strong {
             color: #ffd700;
         }
-        
+
         .upgrade-banner-close {
             position: absolute;
             right: 20px;
@@ -61,11 +59,11 @@
             transition: background 0.3s;
             line-height: 1;
         }
-        
+
         .upgrade-banner-close:hover {
             background: rgba(255, 255, 255, 0.35);
         }
-        
+
         @keyframes slideInDown {
             from {
                 transform: translateY(-100%);
@@ -76,7 +74,7 @@
                 opacity: 1;
             }
         }
-        
+
         /* Animation clignotement doux pour l'éclair */
         @keyframes pulseGlow {
             0%, 100% {
@@ -88,18 +86,18 @@
                 text-shadow: 0 0 2px #ffd700;
             }
         }
-        
+
         .upgrade-banner .flash-icon {
             display: inline-block;
             animation: pulseGlow 2s ease-in-out infinite;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         header {
             text-align: center;
             padding: 40px 20px;
@@ -109,13 +107,13 @@
             margin-bottom: 40px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
-        
+
         h1 {
             font-size: 3em;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
+
         .badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
@@ -124,14 +122,14 @@
             font-size: 0.9em;
             margin-top: 10px;
         }
-        
+
         .gateway-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
         }
-        
+
         .gateway-card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
@@ -140,12 +138,12 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             transition: transform 0.3s ease;
         }
-        
+
         .gateway-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
         }
-        
+
         .gateway-title {
             font-size: 1.6em;
             margin-bottom: 12px;
@@ -153,16 +151,16 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .flag {
             font-size: 1.2em;
         }
-        
+
         .gateway-info {
             margin: 12px 0;
             line-height: 1.6;
         }
-        
+
         .node-id {
             background: rgba(0, 0, 0, 0.2);
             padding: 10px;
@@ -172,7 +170,7 @@
             word-break: break-all;
             margin: 10px 0;
         }
-        
+
         .feature {
             display: flex;
             align-items: center;
@@ -180,11 +178,11 @@
             margin: 6px 0;
             font-size: 0.9em;
         }
-        
+
         .feature-icon {
             font-size: 1.1em;
         }
-        
+
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -197,12 +195,12 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.4);
         }
-        
+
         .btn:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.6);
         }
-        
+
         .stake-section {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
@@ -212,25 +210,25 @@
             text-align: center;
             margin-bottom: 40px;
         }
-        
+
         .stake-section h2 {
             font-size: 2em;
             margin-bottom: 15px;
         }
-        
+
         .stake-section p {
             font-size: 1.1em;
             margin-bottom: 25px;
             opacity: 0.9;
         }
-        
+
         .stake-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
         }
-        
+
         .resources {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
@@ -239,13 +237,13 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             margin-bottom: 40px;
         }
-        
+
         .resources h2 {
             font-size: 2em;
             margin-bottom: 20px;
             text-align: center;
         }
-        
+
         .resources ul {
             list-style: none;
             display: grid;
@@ -253,19 +251,19 @@
             gap: 15px;
             margin-top: 20px;
         }
-        
+
         .resources li {
             background: rgba(255, 255, 255, 0.05);
             padding: 15px 20px;
             border-radius: 12px;
             transition: all 0.3s ease;
         }
-        
+
         .resources li:hover {
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-3px);
         }
-        
+
         .resources a {
             color: #fff;
             text-decoration: none;
@@ -274,16 +272,16 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .resources a:hover {
             text-decoration: underline;
         }
-        
-        .resources a::before {
+
+        .resources a:before {
             content: "🔗";
             font-size: 1.2em;
         }
-        
+
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -291,35 +289,35 @@
             margin-top: 40px;
             opacity: 0.8;
         }
-        
+
         footer p {
             margin: 8px 0;
             font-size: 0.95em;
         }
-        
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
             }
-            
+
             .gateway-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .resources ul {
                 grid-template-columns: 1fr;
             }
-            
+
             .stake-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .upgrade-banner {
                 padding: 12px 50px 12px 15px;
                 font-size: 13px;
             }
-            
+
             .upgrade-banner-close {
                 right: 10px;
             }
@@ -330,21 +328,21 @@
     <!-- Bannière temporaire upgrade -->
     <div class="upgrade-banner" id="upgradeBanner">
         <div class="upgrade-banner-content">
-            <span class="flash-icon">⚡</span> <strong>Infrastructure Update:</strong> All Nym nodes upgraded to v1.19.0 + QUIC Bridge enabled. 
-            Stabilization in progress (24-48h). All services remain fully operational ✅
+            <span class="flash-icon">⚡</span>
+            <strong>Infrastructure Update:</strong> All Nym nodes upgraded to v1.19.0 · QUIC Bridge enabled · 4th gateway (Netherlands) now online! All services fully operational! 🚀
         </div>
-        <button class="upgrade-banner-close" onclick="closeBanner()" title="Close">✕</button>
+        <button class="upgrade-banner-close" onclick="closeBanner()" title="Close">×</button>
     </div>
 
     <div class="container">
         <header>
             <h1>🎭 Pierrot Gateways</h1>
             <p style="font-size: 1.2em; margin: 10px 0;">Secure, Private, Anonymous Access to the Nym Network</p>
-            <span class="badge">🎭 Updated October 2025</span>
+            <span class="badge">✨ Updated October 2025</span>
         </header>
-        
+
         <h2 style="text-align: center; margin-bottom: 30px; font-size: 2em;">Currently Active Nodes</h2>
-        
+
         <div class="gateway-grid">
             <!-- Gateway United Kingdom -->
             <div class="gateway-card">
@@ -352,115 +350,94 @@
                     <span class="flag">🇬🇧</span>
                     <span>United Kingdom</span>
                 </div>
-                
                 <div class="gateway-info">
-                    <div class="feature">
-                        <span class="feature-icon">🔒</span>
-                        <span>Entry & Exit Gateway</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">🌐</span>
-                        <span>IPv4 + IPv6 Support</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">⚡</span>
-                        <span>QUIC Bridge (Latest Tech)</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">🛡️</span>
-                        <span>WireGuard VPN Enabled</span>
-                    </div>
+                    <div class="feature"><span class="feature-icon">🔒</span> <span>Entry + Exit Gateway</span></div>
+                    <div class="feature"><span class="feature-icon">🌐</span> <span>IPv4 + IPv6 Support</span></div>
+                    <div class="feature"><span class="feature-icon">⚡</span> <span>QUIC Bridge (Latest Tech)</span></div>
+                    <div class="feature"><span class="feature-icon">🔐</span> <span>WireGuard VPN Enabled</span></div>
                 </div>
-                
                 <div class="node-id">
                     <strong>Node ID:</strong><br>
                     8MScQyENaj6W75TdL2hQmkvfpeXXyUfKfzaV8VTSzNPa
-                    <br><small>(ID: 2664)</small>
+                    <br><small>ID: 2664</small>
                 </div>
-                
                 <div style="text-align: center;">
-                    <a href="https://explorer.nym.spectredao.net/nodes/8MScQyENaj6W75TdL2hQmkvfpeXXyUfKfzaV8VTSzNPa" class="btn" target="_blank">🔍 SpectreDAO</a>
+                    <a href="https://explorer.nym.spectredao.net/nodes/2664" class="btn" target="_blank">📊 SpectreDAO</a>
                     <a href="https://nym.com/explorer/nym-node/2664" class="btn" target="_blank">🔍 Nym Explorer</a>
                 </div>
             </div>
-            
+
             <!-- Gateway Canada -->
             <div class="gateway-card">
                 <div class="gateway-title">
                     <span class="flag">🇨🇦</span>
                     <span>Canada</span>
                 </div>
-                
                 <div class="gateway-info">
-                    <div class="feature">
-                        <span class="feature-icon">🔒</span>
-                        <span>Entry & Exit Gateway</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">🌐</span>
-                        <span>IPv4 + IPv6 Support</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">⚡</span>
-                        <span>QUIC Bridge (Latest Tech)</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">🛡️</span>
-                        <span>WireGuard VPN Enabled</span>
-                    </div>
+                    <div class="feature"><span class="feature-icon">🔒</span> <span>Entry + Exit Gateway</span></div>
+                    <div class="feature"><span class="feature-icon">🌐</span> <span>IPv4 + IPv6 Support</span></div>
+                    <div class="feature"><span class="feature-icon">⚡</span> <span>QUIC Bridge (Latest Tech)</span></div>
+                    <div class="feature"><span class="feature-icon">🔐</span> <span>WireGuard VPN Enabled</span></div>
                 </div>
-                
                 <div class="node-id">
                     <strong>Node ID:</strong><br>
                     9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q
-                    <br><small>(ID: 2660)</small>
+                    <br><small>ID: 2660</small>
                 </div>
-                
                 <div style="text-align: center;">
-                    <a href="https://explorer.nym.spectredao.net/nodes/9fWseSZYnMpkjfmk8VQ16Me2Nw62ekzc84WAzXKwvn3Q" class="btn" target="_blank">🔍 SpectreDAO</a>
+                    <a href="https://explorer.nym.spectredao.net/nodes/2660" class="btn" target="_blank">📊 SpectreDAO</a>
                     <a href="https://nym.com/explorer/nym-node/2660" class="btn" target="_blank">🔍 Nym Explorer</a>
                 </div>
             </div>
-            
+
             <!-- Gateway Romania -->
             <div class="gateway-card">
                 <div class="gateway-title">
                     <span class="flag">🇷🇴</span>
                     <span>Romania</span>
                 </div>
-                
                 <div class="gateway-info">
-                    <div class="feature">
-                        <span class="feature-icon">🔒</span>
-                        <span>Entry & Exit Gateway</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">🌐</span>
-                        <span>IPv4 + IPv6 Support</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">⚡</span>
-                        <span>QUIC Bridge (Latest Tech)</span>
-                    </div>
-                    <div class="feature">
-                        <span class="feature-icon">🛡️</span>
-                        <span>WireGuard VPN Enabled</span>
-                    </div>
+                    <div class="feature"><span class="feature-icon">🔒</span> <span>Entry + Exit Gateway</span></div>
+                    <div class="feature"><span class="feature-icon">🌐</span> <span>IPv4 + IPv6 Support</span></div>
+                    <div class="feature"><span class="feature-icon">⚡</span> <span>QUIC Bridge (Latest Tech)</span></div>
+                    <div class="feature"><span class="feature-icon">🔐</span> <span>WireGuard VPN Enabled</span></div>
                 </div>
-                
                 <div class="node-id">
                     <strong>Node ID:</strong><br>
                     DXiKYrsx4bnGimcxC3VKpZM8VpayRnE9fsKJZAhgWEYp
-                    <br><small>(ID: 2682)</small>
+                    <br><small>ID: 2682</small>
                 </div>
-                
                 <div style="text-align: center;">
-                    <a href="https://explorer.nym.spectredao.net/nodes/2682" class="btn" target="_blank">🔍 SpectreDAO</a>
+                    <a href="https://explorer.nym.spectredao.net/nodes/2682" class="btn" target="_blank">📊 SpectreDAO</a>
                     <a href="https://nym.com/explorer/nym-node/2682" class="btn" target="_blank">🔍 Nym Explorer</a>
                 </div>
             </div>
+
+            <!-- Gateway Netherlands (NOUVEAU !) -->
+            <div class="gateway-card">
+                <div class="gateway-title">
+                    <span class="flag">🇳🇱</span>
+                    <span>Netherlands</span>
+                </div>
+                <div class="gateway-info">
+                    <div class="feature"><span class="feature-icon">🔒</span> <span>Entry + Exit Gateway</span></div>
+                    <div class="feature"><span class="feature-icon">🌐</span> <span>IPv4 + IPv6 Support</span></div>
+                    <div class="feature"><span class="feature-icon">⚡</span> <span>QUIC Bridge (Latest Tech)</span></div>
+                    <div class="feature"><span class="feature-icon">🔐</span> <span>WireGuard VPN Enabled</span></div>
+                    <div class="feature"><span class="feature-icon">🆕</span> <span style="color: #ffd700;">NEW Node!</span></div>
+                </div>
+                <div class="node-id">
+                    <strong>Node ID:</strong><br>
+                    DucFfVwhM3bktRq2yv3xJpPtMoeT7xykf2VFFfamtLiX
+                    <br><small>ID: 2700</small>
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://explorer.nym.spectredao.net/nodes/2700" class="btn" target="_blank">📊 SpectreDAO</a>
+                    <a href="https://nym.com/explorer/nym-node/2700" class="btn" target="_blank">🔍 Nym Explorer</a>
+                </div>
+            </div>
         </div>
-        
+
         <!-- Stake Section -->
         <div class="stake-section">
             <h2>💰 Stake on Our Nodes</h2>
@@ -469,25 +446,26 @@
                 <a href="https://nym.com/explorer/nym-node/2664" class="btn" target="_blank">🇬🇧 Stake on UK Gateway</a>
                 <a href="https://nym.com/explorer/nym-node/2660" class="btn" target="_blank">🇨🇦 Stake on Canada Gateway</a>
                 <a href="https://nym.com/explorer/nym-node/2682" class="btn" target="_blank">🇷🇴 Stake on Romania Gateway</a>
+                <a href="https://nym.com/explorer/nym-node/2700" class="btn" target="_blank">🇳🇱 Stake on Netherlands Gateway</a>
             </div>
         </div>
-        
+
         <!-- Resources Section -->
         <div class="resources">
-            <h2>🔗 Useful Nym Resources</h2>
+            <h2>📚 Useful Nym Resources</h2>
             <ul>
                 <li><a href="https://nym.com" target="_blank" rel="noopener">Official Nym Website</a></li>
-                <li><a href="https://nymtech.net/docs/" target="_blank" rel="noopener">Technical Documentation</a></li>
-                <li><a href="https://forum.nymtech.net/" target="_blank" rel="noopener">Nym Community Forum</a></li>
-                <li><a href="https://nym.com/blog/" target="_blank" rel="noopener">Blog & News</a></li>
-                <li><a href="https://github.com/nymtech/nym" target="_blank" rel="noopener">Github Source Code</a></li>
-                <li><a href="https://explorer.nym.spectredao.net/" target="_blank" rel="noopener">Nym Network Explorer</a></li>
+                <li><a href="https://nymtech.net/docs" target="_blank" rel="noopener">Technical Documentation</a></li>
+                <li><a href="https://forum.nymtech.net" target="_blank" rel="noopener">Nym Community Forum</a></li>
+                <li><a href="https://nym.com/blog" target="_blank" rel="noopener">Blog & News</a></li>
+                <li><a href="https://github.com/nymtech/nym" target="_blank" rel="noopener">Github - Source Code</a></li>
+                <li><a href="https://explorer.nym.spectredao.net" target="_blank" rel="noopener">Nym Network Explorer</a></li>
             </ul>
         </div>
-        
+
         <footer>
-            <p><strong>Private & Decentralized Infrastructure — Powered by Nym Network</strong></p>
-            <p>🎭 Operated with ❤️ for Privacy | Last updated: October 2025</p>
+            <p><strong>🔒 Private & Decentralized Infrastructure Powered by Nym Network</strong></p>
+            <p>🎭 Operated with ❤️ for Privacy • Last updated October 2025</p>
         </footer>
     </div>
 
